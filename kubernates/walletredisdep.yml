@@ -2,22 +2,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fintech-redis-01
+  name: redis-01
   labels:
     app: vpromq01
 spec:
   selector:
     matchLabels:
-      app: fintech-redis-01
+      app: redis-01
   replicas: 1
   template:
     metadata:
       labels:
-        app: fintech-redis-01
+        app: redis-01
     spec:
       containers:
-      - name: fintech-redis-01
+      - name: redis-01
         image: redis:7-alpine
         ports:
-        - name: fintech-redis-01-port
+        - name: redis-port
           containerPort: 6379

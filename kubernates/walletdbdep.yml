@@ -2,21 +2,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fintech-api-db
+  name: api-db
   labels:
-    app: fintech-api-db
+    app: api-db
 spec:
   selector:
     matchLabels:
-      app: fintech-api-db
+      app: api-db
   replicas: 1
   template:
     metadata:
       labels:
-        app: fintech-api-db
+        app: api-db
     spec:
       containers:
-      - name: fintech-api-db
+      - name: api-db
         image: postgres:14-alpine
         volumeMounts:
         - mountPath: /var/lib/postgresql/data

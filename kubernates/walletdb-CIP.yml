@@ -2,13 +2,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-    name: fintech-api-db
-
+    name: api-db
 spec:
  ports:
   - port: 5432
     targetPort: db-port
     protocol: TCP
  selector:
-  app: fintech-api-db (should match the label under the selector labels in the deployment file)
+  app: api-db 
+  #(should match the label under the selector labels in the deployment file)
  type: ClusterIP
