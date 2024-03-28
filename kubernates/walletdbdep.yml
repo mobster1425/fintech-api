@@ -1,0 +1,56 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fintech-api-db
+  labels:
+    app: fintech-api-db
+spec:
+  selector:
+    matchLabels:
+      app: fintech-api-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: fintech-api-db
+    spec:
+      containers:
+      - name: fintech-api-db
+        image: postgres:14-alpine
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: vpro-db-data
+        ports:
+        - name: db-port
+          containerPort: 5432
+        env:
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: app-secret
+              key: db-pass
+        - name: POSTGRES_DB
+          valueFrom:
+            secretKeyRef:
+              name: app-secret
+              key: db-name
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: app-secret
+              key: db-user
+      nodeSelector: 
+        zone: us-east-2a  # Node label to specify the zone, make sure its same with your ebs volume
+      volumes:
+      - name: vpro-db-data
+        awsElasticBlockStore:
+          volumeID: vol-02be9c9e73912162e
+          fsType: ext4
+  #initContainers:
+ # - name: prepare-data
+  #  image: busybox:latest
+  #  args: ["rm", "-rf", "/var/lib/postgresql/data/lost+found"]    
+   # volumeMounts:
+    #  - name: vpro-db-data
+      #  mountPath: /var/lib/postgresql/data

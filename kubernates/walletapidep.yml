@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fintech-api
+  labels: 
+    app: fintech-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fintech-api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: fintech-api
+        image: feyin/digital-wallet-api:latest        
+        ports:
+        - name: fintech-api-port
+          containerPort: 8080
+        - name: smtp-port
+          containerPort: 587
+      initContainers:
+      - name: init-mydb
+        image: busybox
+        command: ['sh', '-c', 'until nslookup fintech-api-db.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mydb; sleep 2; done;']
+      - name: init-redis
+        image: busybox
+        command: ['sh', '-c', 'until nslookup fintech-redis-01.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mydb; sleep 2; done;']
