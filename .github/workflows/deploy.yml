@@ -57,7 +57,7 @@ jobs:
       run: |
         kubectl apply -f kubernates/app-secret.yml
         kubectl apply -f kubernates/walletapi-Service.yml
-        kubectl apply -f kubernates/walletapidep.yaml
+        kubectl apply -f kubernates/walletapidep.yml
         kubectl apply -f kubernates/walletdb-CIP.yml  
         kubectl apply -f kubernates/walletdbdep.yml
         kubectl apply -f kubernates/walletredis-CIP.yml
