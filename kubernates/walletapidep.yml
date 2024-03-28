@@ -18,7 +18,7 @@ spec:
       - name: fintech-api
         image: feyin/digital-wallet-api:latest        
         ports:
-        - name: fintech-api-port
+        - name: api-port
           containerPort: 8080
         - name: smtp-port
           containerPort: 587
