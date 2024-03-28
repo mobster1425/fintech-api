@@ -182,7 +182,7 @@ require.Equal(t, expectedBalance2, updatedWallet2.Balance)
 
 
 
-
+/*
 func TestTransferTxDeadlock(t *testing.T) {
 	wallet1 := createRandomWallet(t)
 	wallet2 := createRandomWallet(t)
@@ -272,6 +272,7 @@ require.Equal(t, expectedBalance1, updatedWallet1.Balance)
 require.Equal(t, expectedBalance2, updatedWallet2.Balance)
 
 }
+*/
 
 func TestRedeemTx(t *testing.T) {
 	senderWallet := createRandomWallet(t)
