@@ -32,6 +32,9 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
+    - name: Create kubeconfig directory and file if they don't exist
+      run: mkdir -p ~/.kube && touch ~/.kube/config
+
     - name: Load kubeconfig from GitHub Secrets
       run: echo "${{ secrets.KUBECONFIG }}" > ~/.kube/config
 
