@@ -25,7 +25,7 @@ spec:
       initContainers:
       - name: init-mydb
         image: busybox
-        command: ['sh', '-c', 'until nslookup fintech-api-db.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mydb; sleep 2; done;']
+        command: ['sh', '-c', 'until nslookup api-db.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mydb; sleep 2; done;']
       - name: init-redis
         image: busybox
-        command: ['sh', '-c', 'until nslookup fintech-redis-01.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mydb; sleep 2; done;']
+        command: ['sh', '-c', 'until nslookup redis-01.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mydb; sleep 2; done;']
