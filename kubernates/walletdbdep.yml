@@ -52,5 +52,5 @@ spec:
          image: busybox:latest
          args: ["rm", "-rf", "/var/lib/postgresql/data/lost+found"]    
          volumeMounts:
-          - name: vpro-db-data
+          - name: db-data
             mountPath: /var/lib/postgresql/data
