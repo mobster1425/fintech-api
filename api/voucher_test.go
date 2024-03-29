@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"encoding/json"
 
-	//	"fmt"
+		"fmt"
 	"io"
 	"net/http"
 	"net/http/httptest"
@@ -27,7 +27,7 @@ func TestCreateVoucherAPI(t *testing.T) {
 	user, _ := randomUserWithRole(t)
 	voucher := randomVoucher(user.Username)
 	wallet := randomWallet(user.Username)
-	//	voucher2 := randomVoucherForStatus(user.Username)
+		voucher2 := randomVoucherForStatus(user.Username)
 
 	//   value :=   util.RandomInt(1, 100)
 	//    vouchertype := db.VoucherType(util.RandomVoucherType())
@@ -44,7 +44,7 @@ func TestCreateVoucherAPI(t *testing.T) {
 		buildStubs    func(store *mockdb.MockStore)
 		checkResponse func(t *testing.T, recoder *httptest.ResponseRecorder)
 	}{
-		/*
+		
 			{
 				name: "OK",
 				body: gin.H{
@@ -103,7 +103,7 @@ func TestCreateVoucherAPI(t *testing.T) {
 					// Additional checks for the response body if needed
 				},
 			},
-		*/
+		
 		{
 			name: "InternalError",
 			body: gin.H{
@@ -374,7 +374,7 @@ func TestCreateVoucherAPI(t *testing.T) {
 				// Additional checks for the response body if needed
 			},
 		},
-		/*
+		
 			{
 
 				name: "Valid Request - Status Not Provided (Defaults to an appropriate value)",
@@ -430,6 +430,7 @@ func TestCreateVoucherAPI(t *testing.T) {
 				},
 			},
 
+			/*
 				{
 					name: "Valid Request - Type Not Provided (Defaults to an appropriate value)",
 					body: gin.H{

@@ -20,7 +20,7 @@ spec:
         image: postgres:14-alpine
         volumeMounts:
         - mountPath: /var/lib/postgresql/data
-          name: vpro-db-data
+          name: db-data
         ports:
         - name: db-port
           containerPort: 5432
@@ -43,7 +43,7 @@ spec:
       nodeSelector: 
         zone: us-east-2a  # Node label to specify the zone, make sure its same with your ebs volume
       volumes:
-      - name: vpro-db-data
+      - name: db-data
         awsElasticBlockStore:
           volumeID: vol-02be9c9e73912162e
           fsType: ext4
