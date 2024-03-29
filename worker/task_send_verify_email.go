@@ -7,10 +7,9 @@ import (
 
 	"github.com/hibiken/asynq"
 	"github.com/rs/zerolog/log"
-	
+
 	db "feyin/digital-fintech-api/db/sqlc"
 	"feyin/digital-fintech-api/util"
-	
 )
 
 // TaskSendVerifyEmail is a constant representing the task type for sending email verification
@@ -73,7 +72,11 @@ func (processor *RedisTaskProcessor) ProcessTaskSendVerifyEmail(ctx context.Cont
 	// Compose email content
 	subject := "Welcome to Simple Bank"
 	// TODO: replace this URL with an environment variable that points to a front-end page
-	verifyUrl := fmt.Sprintf("http://localhost:8080/verify_email?email_id=%d&secret_code=%s",
+	// for development
+	// verifyUrl := fmt.Sprintf("http://localhost:8080/verify_email?email_id=%d&secret_code=%s",
+
+	// for production
+	verifyUrl := fmt.Sprintf("a6b45d458f4184ad4bfd9f9c0b409b91-589698991.us-east-2.elb.amazonaws.com:8080:8080/verify_email?email_id=%d&secret_code=%s",
 		verifyEmail.ID, verifyEmail.SecretCode)
 	content := fmt.Sprintf(`Hello %s,<br/>
 	Thank you for registering with us!<br/>
@@ -92,14 +95,6 @@ func (processor *RedisTaskProcessor) ProcessTaskSendVerifyEmail(ctx context.Cont
 		Str("email", user.Email).Msg("processed task")
 	return nil
 }
-
-
-
-
-
-
-
-
 
 /*
 
