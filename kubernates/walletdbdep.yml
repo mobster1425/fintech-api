@@ -45,7 +45,7 @@ spec:
       volumes:
       - name: db-data
         awsElasticBlockStore:
-          volumeID: vol-02be9c9e73912162e
+          volumeID: vol-034c224f0b02f6e9b
           fsType: ext4
   #initContainers:
  # - name: prepare-data
